@@ -6,8 +6,20 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Bell, Check, Trash2 } from "lucide-react";
 
+// 📌 Type for notification status
+type NotificationStatus = "success" | "warning" | "error" | "info";
+
+interface Notification {
+    id: number;
+    user: string;
+    desc: string;
+    status: NotificationStatus;
+    read: boolean;
+    time: string;
+}
+
 // 📌 Dummy notifications list
-const initialNotifications = [
+const initialNotifications: Notification[] = [
     {
         id: 1,
         user: "Sarah Johnson",
@@ -15,7 +27,7 @@ const initialNotifications = [
         status: "success",
         read: false,
         time: "2 hours ago",
-    },
+    }, 
     {
         id: 2,
         user: "Michael Lee",
@@ -60,7 +72,7 @@ export default function NotificationPanel() {
     };
 
     // ✅ STATUS BADGE COLORS
-    const statusColor = {
+    const statusColor: Record<NotificationStatus, string> = {
         success: "bg-green-100 text-green-700",
         warning: "bg-yellow-100 text-yellow-700",
         error: "bg-red-100 text-red-700",
